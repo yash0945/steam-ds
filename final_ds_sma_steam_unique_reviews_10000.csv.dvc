@@ -1,0 +1,5 @@
+outs:
+- md5: 11820a0a1e3cdeb4a5fcd72be2b6c6b6
+  size: 1351624
+  hash: md5
+  path: final_ds_sma_steam_unique_reviews_10000.csv

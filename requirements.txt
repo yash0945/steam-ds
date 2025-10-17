@@ -1,0 +1,8 @@
+flask
+fastapi
+pytest
+flake8
+dvc
+scikit-learn
+numpy
+pandas

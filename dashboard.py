@@ -278,5 +278,4 @@ st.markdown("""
 - **Transparency:** Explainability through SHAP feature importance plots.  
 """)
 
->>>>>>> d0d1b09c3787e02d825e810f680365f4243243a6
 st.markdown("💾 *Developed using Streamlit, SHAP, and Scikit-learn.*")

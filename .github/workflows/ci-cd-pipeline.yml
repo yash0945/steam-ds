@@ -1,0 +1,40 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      # Set up Python
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install dvc
+
+      # Pull DVC data
+      - name: Pull DVC data
+        run: dvc pull
+
+      # Run tests
+      - name: Run tests
+        run: |
+          pytest tests/
+
+      # Linting
+      - name: Lint code
+        run: |
+          flake8 .

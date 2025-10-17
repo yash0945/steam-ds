@@ -1,3 +1,4 @@
+// ...existing code...
 name: CI/CD Pipeline
 
 on:
@@ -9,9 +10,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: steam-ds
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          # ensure the repo is checked out so the steam-ds folder is available
+          fetch-depth: 0
 
       # Set up Python
       - name: Setup Python
@@ -22,19 +29,21 @@ jobs:
       # Install dependencies
       - name: Install dependencies
         run: |
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install dvc
 
-      # Pull DVC data
+      # Pull DVC data (runs in steam-ds/)
       - name: Pull DVC data
         run: dvc pull
 
-      # Run tests
+      # Run tests (runs in steam-ds/)
       - name: Run tests
         run: |
           pytest tests/
 
-      # Linting
+      # Linting (runs in steam-ds/)
       - name: Lint code
         run: |
           flake8 .
+// ...existing code...
